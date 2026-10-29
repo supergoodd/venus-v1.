@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VENUS V1</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #080b16;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    width: 90%;
+    max-width: 400px;
+    padding: 25px;
+    background: #11182b;
+    border: 1px solid #263a65;
+    border-radius: 20px;
+    box-shadow: 0 0 30px #10285a;
+}
+.logo {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: #58a6ff;
+    letter-spacing: 4px;
+}
+.subtitle {
+    text-align: center;
+    color: #8c9bb8;
+    margin: 10px 0 30px;
+}
+label {
+    display: block;
+    margin: 15px 0 7px;
+    color: #b9c9e8;
+}
+input, select {
+    width: 100%;
+    padding: 13px;
+    border-radius: 10px;
+    border: 1px solid #304366;
+    background: #080e1d;
+    color: white;
+    outline: none;
+}
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #287bff;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+#dashboard {
+    display: none;
+}
+.card {
+    background: #0a1122;
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 12px;
+    border: 1px solid #263a65;
+}
+.small {
+    color: #8c9bb8;
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+    <div class="logo">VENUS V1</div>
+    <div class="subtitle">Owner & Reseller Dashboard</div>
+
+    <div id="login">
+        <label>Username</label>
+        <input id="username" placeholder="Masukkan username">
+
+        <label>Password</label>
+        <input id="password" type="password" placeholder="Masukkan password">
+
+        <label>Pilih role</label>
+        <select id="role">
+            <option value="Reseller">Reseller</option>
+            <option value="Owner">Owner</option>
+        </select>
+
+        <button onclick="login()">MASUK DASHBOARD</button>
+        <p class="small" id="message"></p>
+    </div>
+
+    <div id="dashboard">
+        <h2>Dashboard</h2>
+        <div class="card">Akun: <b id="account"></b></div>
+        <div class="card">Role: <b id="accountRole"></b></div>
+        <div class="card">
+            <b>Status Sistem</b>
+            <p class="small">VENUS V1 berhasil dibuka.</p>
+        </div>
+        <button onclick="logout()">KELUAR</button>
+    </div>
+</div>
+
+<script>
+function login() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value;
+    const role = document.getElementById("role").value;
+
+    if (!username || !password) {
+        document.getElementById("message").textContent =
+            "Isi username dan password terlebih dahulu.";
+        return;
+    }
+
+    document.getElementById("account").textContent = username;
+    document.getElementById("accountRole").textContent = role;
+    document.getElementById("login").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+}
+
+function logout() {
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("login").style.display = "block";
+    document.getElementById("password").value = "";
+}
+</script>
+</body>
+</html>
